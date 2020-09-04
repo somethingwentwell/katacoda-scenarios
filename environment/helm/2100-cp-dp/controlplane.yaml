@@ -1,0 +1,373 @@
+deployment:
+  kong:
+    enabled: true
+
+env:
+  nginx_worker_processes: "1"
+  proxy_access_log: /dev/stdout
+  admin_access_log: /dev/stdout
+  admin_gui_access_log: /dev/stdout
+  portal_api_access_log: /dev/stdout
+  proxy_error_log: /dev/stderr
+  admin_error_log: /dev/stderr
+  admin_gui_error_log: /dev/stderr
+  portal_api_error_log: /dev/stderr
+  prefix: /kong_prefix/
+  database: postgres
+  admin_gui_url: http://CHANGEME
+  admin_api_uri: http://CHANGEME
+  portal_api_url: http://CHANGEME
+  portal_gui_host: CHANGEME
+  portal: on
+  portal_gui_protocol: http
+  log_level: debug
+  
+  ##Hybrid mode specific
+  role: control_plane
+  cluster_cert: /etc/secrets/kong-cluster-tls/tls.crt
+  cluster_cert_key: /etc/secrets/kong-cluster-tls/tls.key
+
+image:
+  repository: kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
+  tag: 2.1.0.0-beta1-centos
+  pullPolicy: IfNotPresent
+  pullSecrets:
+   - kong-enterprise-docker
+
+# Specify Kong admin API service and listener configuration
+admin:
+  enabled: true
+  type: NodePort
+  annotations: {}
+
+  http:
+    enabled: true
+    servicePort: 8001
+    containerPort: 8001
+    parameters: []
+
+  tls:
+    enabled: false
+    servicePort: 8444
+    containerPort: 8444
+    parameters:
+    - http2
+
+  ingress:
+    enabled: true
+    hostname: CHANGEME
+    path: /
+
+# Specify Kong status listener configuration
+# This listen is internal-only. It cannot be exposed through a service or ingress.
+status:
+  http:
+    # Enable plaintext HTTP listen for the status listen
+    enabled: true
+    containerPort: 8100
+
+  tls:
+    # Enable HTTPS listen for the status listen
+    # Kong does not currently support HTTPS status listens, so this should remain false
+    enabled: false
+    containerPort: 8543
+
+
+# Specify Kong cluster service and listener configuration
+
+cluster:
+  enabled: true
+  # If you want to specify annotations for the cluster service, uncomment the following
+  # line, add additional or adjust as needed, and remove the curly braces after 'annotations:'.
+  tls:
+    enabled: true
+    servicePort: 8005
+    containerPort: 8005
+    parameters: []
+
+  type: LoadBalancer
+
+  externalIPs: []
+
+# Specify Kong proxy service and listener configuration
+proxy:  
+  enabled: false
+  type: LoadBalancer    
+  http:
+    enabled: false   
+  tls:    
+    enabled: false   
+  ingress:
+    enabled: false 
+
+# Enable/disable migration jobs, and set annotations for them
+migrations:
+  preUpgrade: true
+  postUpgrade: true
+  annotations:
+    sidecar.istio.io/inject: false
+    kuma.io/sidecar-injection: "disabled"
+
+secretVolumes:
+ - kong-cluster-tls
+
+
+# -----------------------------------------------------------------------------
+# Ingress Controller parameters
+# -----------------------------------------------------------------------------
+
+ingressController:
+  enabled: true
+  image:
+    repository: kong-docker-kubernetes-ingress-controller.bintray.io/kong-ingress-controller
+    tag: 0.9.1
+
+  # Specify Kong Ingress Controller configuration via environment variables
+  env:
+    kong_admin_tls_skip_verify: false
+    publish_service: CHANGEME
+    # kong_admin_token:
+    #   valueFrom:
+    #     secretKeyRef:
+    #        key: password
+    #        name: kong-enterprise-superadmin-password
+
+  admissionWebhook:
+    enabled: false
+    failurePolicy: Fail
+    port: 8080
+
+  ingressClass: CHANGEME
+
+  rbac:
+    # Specifies whether RBAC resources should be created
+    create: true
+
+  serviceAccount:
+    # Specifies whether a ServiceAccount should be created
+    create: true
+    # The name of the ServiceAccount to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name:
+    # The annotations for service account
+    annotations: {}
+
+  installCRDs: false # temporary workaround for this Helm3 mentioned here  https://github.com/Kong/charts/tree/master/charts/kong#helm-3
+
+  # general properties
+  livenessProbe:
+    httpGet:
+      path: "/healthz"
+      port: 10254
+      scheme: HTTP
+    initialDelaySeconds: 5
+    timeoutSeconds: 5
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 3
+  readinessProbe:
+    httpGet:
+      path: "/healthz"
+      port: 10254
+      scheme: HTTP
+    initialDelaySeconds: 5
+    timeoutSeconds: 5
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 3
+  resources: {}
+# -----------------------------------------------------------------------------
+# Postgres sub-chart parameters
+# -----------------------------------------------------------------------------
+# CHANGE ME
+postgresql:
+  enabled: true
+  postgresqlUsername: kong
+  postgresqlDatabase: kong
+  postgresqlPassword: kong
+  service:
+    port: 5432
+
+# -----------------------------------------------------------------------------
+# Miscellaneous parameters
+# -----------------------------------------------------------------------------
+# CHANGE ME ? 
+waitImage:
+  repository: busybox
+  tag: latest
+  pullPolicy: IfNotPresent
+
+readinessProbe:
+  httpGet:
+    path: "/status"
+    port: metrics
+    scheme: HTTP
+  initialDelaySeconds: 5
+  timeoutSeconds: 5
+  periodSeconds: 10
+  successThreshold: 1
+  failureThreshold: 3
+
+# livenessProbe for Kong pods
+livenessProbe:
+  httpGet:
+    path: "/status"
+    port: metrics
+    scheme: HTTP
+  initialDelaySeconds: 5
+  timeoutSeconds: 5
+  periodSeconds: 10
+  successThreshold: 1
+  failureThreshold: 3
+
+# Affinity for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - kong
+              topologyKey: failure-domain.beta.kubernetes.io/zone
+            weight: 100
+
+# Tolerations for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+
+# Node labels for pod assignment
+# Ref: https://kubernetes.io/docs/user-guide/node-selection/
+nodeSelector: {}
+
+# Annotation to be added to Kong pods
+podAnnotations: {}
+
+# Kong pod count
+replicaCount: 1
+
+# Annotations to be added to Kong deployment
+
+# Enable autoscaling using HorizontalPodAutoscaler
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 5
+  ## targetCPUUtilizationPercentage only used if the cluster doesn't support autoscaling/v2beta
+  targetCPUUtilizationPercentage:
+  ## Otherwise for clusters that do support autoscaling/v2beta, use metrics
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+# Kong Pod Disruption Budget
+podDisruptionBudget:
+  enabled: false
+  maxUnavailable: "50%"
+
+podSecurityPolicy:
+  enabled: false
+  spec:
+    privileged: false
+    fsGroup:
+      rule: RunAsAny
+    runAsUser:
+      rule: RunAsAny
+    runAsGroup:
+      rule: RunAsAny
+    seLinux:
+      rule: RunAsAny
+    supplementalGroups:
+      rule: RunAsAny
+    volumes:
+      - 'configMap'
+      - 'secret'
+      - 'emptyDir'
+    allowPrivilegeEscalation: false
+    hostNetwork: false
+    hostIPC: false
+    hostPID: false
+
+    readOnlyRootFilesystem: true
+
+
+priorityClassName: ""
+
+# securityContext for Kong pods.
+securityContext:
+  runAsUser: 1000 # REMOVE THIS !! 
+
+serviceMonitor:
+  enabled: false
+
+
+# -----------------------------------------------------------------------------
+# Kong Enterprise parameters
+# -----------------------------------------------------------------------------
+enterprise:
+  enabled: true
+  license_secret: license-secret
+  vitals:
+    enabled: false
+  portal:
+    enabled: true
+  rbac:
+    enabled: false
+    admin_gui_auth: basic-auth
+    session_conf_secret: you-must-create-an-rbac-session-conf-secret
+    admin_gui_auth_conf_secret: you-must-create-an-admin-gui-auth-conf-secret
+  smtp:
+    enabled: false
+
+manager:
+  # Enable creating a Kubernetes service for Kong Manager
+  enabled: true
+  type: NodePort
+
+  http:
+    # Enable plaintext HTTP listen for Kong Manager
+    enabled: true
+    servicePort: 8002
+    containerPort: 8002
+    parameters: []
+
+  tls:
+    # Enable HTTPS listen for Kong Manager
+    enabled: false
+    servicePort: 8445
+    containerPort: 8445
+    parameters:
+    - http2
+
+  ingress:
+    enabled: true
+    hostname: CHANGEME
+    annotations: {}
+    path: /
+
+  externalIPs: []
+
+portal:
+  enabled: false  
+  http:
+    enabled: false
+  tls:
+    enabled: false   
+  ingress:
+    enabled: false
+    
+portalapi:
+  enabled: false  
+  http:
+    enabled: false    
+  tls:    
+    enabled: false   
+  ingress:    
+    enabled: false
