@@ -21,7 +21,7 @@ Repository to capture environment configuration and kong configuration to reprod
 
 * Please include a detailed README with all configuration files and environment setup. Include references to any relevant cases or bug reports. Also include a mention of product version when applicable. 
 
-* Follow the naming conventions of the other examples in the repository, if the scripts are associated with a specific case you can prepend the case number to the file or include a mention of it in the readme. Make files names descriptive our outline each files purpose in the readme. 
+* Follow the naming conventions of the other examples in the repository, if the scripts are associated with a specific case you can prepend the case number to the file or include a mention of it in the readme. Make files names descriptive and/or outline each files purpose in the readme. 
 ** For example: 00016565-KongNodeAsUpstream.yaml
 
 * You can assume that the user already knows how to use the general tooling documented ( Deck, httpie, docker ) 
