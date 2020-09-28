@@ -1,1 +1,0 @@
-## Sample OpenID plugin with Okta  ##
