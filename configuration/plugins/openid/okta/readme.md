@@ -5,7 +5,7 @@ This will configure a global OpenID connect plugin using only the 'bearer' auth 
 This deck file will create the following entities: 
 
 - 1 Service to 'httpbin.org/anything'
-- 2 Route 
+- 2 Routes
 - Openid Plugin configured Globally 
 
 Before using this deck file change the following issuer endpoint to match the domain of your Okta instance- 
