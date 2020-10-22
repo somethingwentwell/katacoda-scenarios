@@ -4,7 +4,9 @@
 1. Create service (httpin)
 2. Create route (/v1/data/KPIS/query)
 3. Deploy plugin
-curl -i -X POST http://localhost:8001/plugins --header "Content-Type: application/json" --header "kong-admin-token:admin" --data @17900.json
+
+curl -i -X POST http://localhost:8001/plugins --header "Content-Type: application/json" --header "kong-admin-token:admin" --data @17900.json  
+
 
 {
 "name": "request-validator",
