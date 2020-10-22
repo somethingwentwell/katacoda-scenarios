@@ -1,0 +1,46 @@
+_format_version: "1.1"
+_workspace: Goldman
+services:
+- connect_timeout: 60000
+  host: httpbin.org
+  name: httpbin
+  path: /anything
+  port: 80
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: httpbin
+    paths:
+    - /validate
+    - /v1/data/KPIS/query
+    path_handling: v1
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: true
+    https_redirect_status_code: 426
+plugins:
+- name: request-validator
+  config:
+    allowed_content_types:
+    - application/json
+    body_schema: '{ "type": "object", "properties": { "where": { "type": "object",
+      "properties": { "kpiId": { "anyOf": [ { "maxLength": 50, "minLength": 0, "pattern":
+      "^[\\w\\.\\-]*$", "type": "string", "description": "Marquee unique KPI identifier."
+      }, { "maxItems": 2, "type": "array", "items": { "maxLength": 50, "minLength":
+      0, "pattern": "^[\\w\\.\\-]*$", "type": "string", "description": "Marquee unique
+      KPI identifier." } } ] } }, "additionalProperties": false } }, "additionalProperties":
+      false }'
+    parameter_schema: null
+    verbose_response: true
+    version: draft4
+  enabled: true
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https
