@@ -1,5 +1,5 @@
 
-## Request Parameter validator does not fail requests with duplicate keys in payload
+## Request Validation plugin does not fail requests when duplicate keys are in the payload
 
 1. Create service (httpin)
 2. Create route (/v1/data/KPIS/query)
