@@ -16,6 +16,7 @@ services:
 
  kong-ent:
    image: ${KONG_IMAGE} #  
+   container_name: kong-ent
    networks:
     - kong
    restart: always

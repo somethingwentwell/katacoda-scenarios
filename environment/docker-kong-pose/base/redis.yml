@@ -1,0 +1,13 @@
+version: "3"
+services:
+
+# Single Redis 
+ redis:
+  image: redis
+  restart: always
+  command: redis-server 
+  container_name: redis
+  networks:
+   - kong
+  ports:
+   - 6379:6379
