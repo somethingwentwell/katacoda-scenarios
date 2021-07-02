@@ -1,3 +1,5 @@
 .DS_Store
 **/.DS_Store
 license.json
+env_test.sh
+down_test.sh

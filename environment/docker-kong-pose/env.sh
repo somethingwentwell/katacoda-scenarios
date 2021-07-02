@@ -9,5 +9,17 @@ export KONG_IMAGE=kong/kong-gateway:2.4.1.1-alpine
 
 
 # Set Kong EE license file change <file> to your license.json path
-export KONG_LICENSE_DATA=`cat ./license.json`
+export KONG_LICENSE_DATA=`cat ../../license.json`
+
+# Deployment
+
+export DEPLOYMENT="kong_keycloak"
+#export CONFIG="correlation-id"
+
+docker-compose -f deployments/$DEPLOYMENT/docker-compose.yml -f base/upstreams_basic.yml up -d
+
+# Deck 
+#sleep 10
+#deck sync -s plugins/$CONFIG/kong.yaml
+
 

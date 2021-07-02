@@ -9,25 +9,22 @@ Docker compose file collection for various Kong usecase.
 
 # How to use
 
-1. Setup environment variables for `KONG_IMAGE` and `KONG_LICENSE_DATA`
+1. Setup environment variables for `KONG_IMAGE`, `KONG_LICENSE_DATA`, `DEPLOYMENT` , `CONFIG`
 
 ```
 export KONG_IMAGE=kong/kong-gateway:2.4.1.1-alpine
 export KONG_LICENSE_DATA=`cat ./license.json`
+
 ```
 or you can just use the `env` file to initialize
 ```
  . ./env
 ```
 
-2. Go to deployment folder and run `docker-compose up -d`
-```
-cd kong_postgres
-docker-compose -up -d 
-```
-
 
 ## Deployment description
+
+Available DEPLOYMENT options
 
 
 | Deployment Name        | Description           |
@@ -35,6 +32,25 @@ docker-compose -up -d
 |`kong_postgres`|Kong DB mode with Postgres|
 |`kong_cassandra`|Kong DB mode with Single node Cassandra|
 |`kong_hybrid`|Kong Hybrid mode with Postgres|
+|`kong_keycloak`|Kong DB mode with Keycloak|
+|`kong_smtp`|Kong DB mode with SMTP server|
+|`kong_squid`|Kong DB mode with SQUID forward proxy server|
+|`kong_redis/redis_single`|Kong DB mode with redis|
+|`kong_redis/redis_cluster`|Kong DB mode with redis|
+|`kong_ldap`|Kong DB mode with LDAP server|
+|`kong_zipkin`|Kong DB mode with Zipkin|
+
+---
+
+## Config description
+
+Available CONFIG options
+
+
+| Config Name        | Description           |
+| ------------- |-------------|
+|`correlation-id`|Correlation ID plugin|
+|`forward-proxy`|Forward proxy plugin|
 
 ---
 
