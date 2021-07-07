@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 #Set KONG_IMAGE variable with link of Kong EE Docker image
@@ -21,5 +20,3 @@ docker-compose -f deployments/$DEPLOYMENT/docker-compose.yml -f base/upstreams_b
 # Deck 
 #sleep 10
 #deck sync -s plugins/$CONFIG/kong.yaml
-
-

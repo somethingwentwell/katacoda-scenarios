@@ -32,11 +32,14 @@ Available DEPLOYMENT options
 |`kong_postgres`|Kong DB mode with Postgres|
 |`kong_cassandra`|Kong DB mode with Single node Cassandra|
 |`kong_hybrid`|Kong Hybrid mode with Postgres|
+|`kong_immunity`|Kong DB mode with Immunity|
+|`kong_vault`|Kong DB mode with Vault|
+|`kong_redis/redis_single`|Kong DB mode with single Redis|
+|`kong_redis/redis_sentinel`|Kong DB mode with Redis Sentinel|
+|`kong_redis/redis_cluster`|Kong DB mode with Redis cluster|
 |`kong_keycloak`|Kong DB mode with Keycloak|
 |`kong_smtp`|Kong DB mode with SMTP server|
 |`kong_squid`|Kong DB mode with SQUID forward proxy server|
-|`kong_redis/redis_single`|Kong DB mode with redis|
-|`kong_redis/redis_cluster`|Kong DB mode with redis|
 |`kong_ldap`|Kong DB mode with LDAP server|
 |`kong_zipkin`|Kong DB mode with Zipkin|
 

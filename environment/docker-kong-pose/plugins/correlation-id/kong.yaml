@@ -1,35 +1,36 @@
 _format_version: "1.1"
 services:
 - connect_timeout: 60000
-  host: mockbin.org
-  name: mockbin
-  path: /request
-  port: 80
-  protocol: http
+  host: httpbin.org
+  name: httpbin
+  path: /anything
+  port: 443
+  protocol: https
   read_timeout: 60000
   retries: 5
   write_timeout: 60000
   routes:
-  - name: mockbin
+  - name: httpbin
     paths:
-    - /mockbin
-    path_handling: v1
+    - /test
+    path_handling: v0
     preserve_host: false
     protocols:
     - http
-    - https
     regex_priority: 0
     strip_path: true
     https_redirect_status_code: 426
-  plugins:
-  - name: correlation-id
-    config:
-      echo_downstream: false
-      generator: uuid#counter
-      header_name: Kong-Request-ID
-    enabled: true
-    protocols:
-    - grpc
-    - grpcs
-    - http
-    - https
+    request_buffering: true
+    response_buffering: true
+    plugins:
+    - name: correlation-id
+      config:
+        echo_downstream: false
+        generator: uuid#counter
+        header_name: Kong-Request-ID
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
