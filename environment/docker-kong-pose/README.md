@@ -31,6 +31,7 @@ Available DEPLOYMENT options
 | ------------- |-------------|
 |`kong_postgres`|Kong DB mode with Postgres|
 |`kong_cassandra`|Kong DB mode with Single node Cassandra|
+|`kong_dbless`|Kong DBless mode|
 |`kong_hybrid`|Kong Hybrid mode with Postgres|
 |`kong_immunity`|Kong DB mode with Immunity|
 |`kong_vault`|Kong DB mode with Vault|
@@ -42,6 +43,7 @@ Available DEPLOYMENT options
 |`kong_squid`|Kong DB mode with SQUID forward proxy server|
 |`kong_ldap`|Kong DB mode with LDAP server|
 |`kong_zipkin`|Kong DB mode with Zipkin|
+|`kong_ftp`|Kong DB mode with FTP server|
 
 ---
 
