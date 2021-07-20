@@ -1,16 +1,8 @@
-git clone https://github.com/somethingwentwell/Tutorial-CRUDApp{{execute}}
-<pre class="file" data-target="clipboard">
-git clone https://github.com/somethingwentwell/Tutorial-CRUDApp
-</pre>
-<pre class="file" data-target="clipboard">
-docker-compose pull
-</pre>
-<pre class="file" data-target="clipboard">
-docker-compose up -d
-</pre>
+`sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`{{execute}}
+`sudo chmod +x /usr/local/bin/docker-compose`{{execute}}
+`katacoda-scenarios/crudapp/assets/docker-compose.yaml`{{open}}
+`docker-compose pull`{{execute}}
+`docker-compose up -d`{{execute}}
 
 https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com
-
-<pre>https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com</pre>
-
 [Displaying Tabs](https://katacoda.com/scenario-examples/scenarios/dashboard-tabs)
