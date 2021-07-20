@@ -2,7 +2,7 @@
 
 `sudo chmod +x /usr/local/bin/docker-compose`{{execute}}
 
-`root/docker-compose.yaml`{{open}}
+`docker-compose.yaml`{{open}}
 
 `docker-compose pull`{{execute}}
 
