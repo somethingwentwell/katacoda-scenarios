@@ -41,8 +41,10 @@
       "text": "finish.md"
     }
   },
-  "environment": {},
+  "environment": {
+    "uilayout": "editor-terminal"
+  },
   "backend": {
-    "imageid": "vscode"
+    "imageid": "nodejs:12"
   }
 }
