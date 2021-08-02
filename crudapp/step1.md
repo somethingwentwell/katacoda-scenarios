@@ -8,5 +8,7 @@
 
 `docker-compose up -d`{{execute}}
 
-https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com
+`docker logs root_strapi_1 --follow`{{execute}}
+
+https://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com
 [Displaying Tabs](https://katacoda.com/scenario-examples/scenarios/dashboard-tabs)
