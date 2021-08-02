@@ -1,3 +1,4 @@
+## Install Kong Gateway (Open Source)
 https://docs.konghq.com/install/docker/
 
 1) Pull the following Docker image
@@ -31,7 +32,7 @@ docker run --rm \
      -e "KONG_PG_USER=kong" \
      -e "KONG_PG_PASSWORD=kong" \
      -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
-     kong:latest kong migrations bootstra
+     kong:latest kong migrations bootstrap
 `docker run --rm \
      --network=kong-net \
      -e "KONG_DATABASE=postgres" \

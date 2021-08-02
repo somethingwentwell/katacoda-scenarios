@@ -1,3 +1,4 @@
+## Install Kong Gateway (Enterprise)
 https://docs.konghq.com/enterprise/2.1.x/deployment/installation/docker/
 
 1) Pull the following Docker image
