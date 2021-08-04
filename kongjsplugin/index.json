@@ -1,6 +1,6 @@
 {
-  "title": "Kong Demo",
-  "description": "Kong Demo",
+  "title": "Kong JavaScript Plugin Development",
+  "description": "Kong JavaScript Plugin Development",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -20,22 +20,6 @@
       {
         "title": "Step 4",
         "text": "step4.md"
-      },
-      {
-        "title": "Step 5",
-        "text": "step5.md"
-      },
-      {
-        "title": "Step 6",
-        "text": "step6.md"
-      },
-      {
-        "title": "Step 7",
-        "text": "step7.md"
-      },
-      {
-        "title": "Step 8",
-        "text": "step8.md"
       }
     ],
     "intro": {
@@ -47,7 +31,7 @@
   },
   "assets": {
     "host01": [
-        {"file": "strapi_sqlite/docker-compose.yaml", "target": "/root", "chmod": "+x"}
+        {"file": "strapi_sqlite/docker-compose.yaml", "target": "/root/strapi", "chmod": "+x"}
     ]
   },
   "environment": {
