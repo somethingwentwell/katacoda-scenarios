@@ -1,4 +1,4 @@
-# js plugin enviroment setup in existing docker
+# JavaScript Plugin Enviroment Setup in Existing Kong Docker
 
 docker exec -it -u root kong-ee /bin/bash
 

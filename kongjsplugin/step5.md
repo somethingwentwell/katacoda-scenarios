@@ -1,4 +1,4 @@
-# js plugin development with node modules
+# JavaScript Plugin Development with Node Modules
 
 cd
 

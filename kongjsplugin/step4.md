@@ -1,4 +1,4 @@
-# js example plugin and installation
+# JavaScript Example Plugin and Installation
 
 https://docs.konghq.com/gateway-oss/2.5.x/external-plugins/#developing-javascript-plugins
 
