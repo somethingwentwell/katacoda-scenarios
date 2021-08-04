@@ -53,7 +53,3 @@ http get https://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda
 
 Censor Keywords
 https://github.com/observerss/textfilter/blob/master/keywords
-
-docker commit --change "ENV KONG_PLUGINS=bundled,js-censor" kong-ee kong-ee-2
-
-/usr/lib/
