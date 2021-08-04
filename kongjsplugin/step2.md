@@ -49,14 +49,13 @@ export MY_URI=https://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.kat
 `export MY_URI=https://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com`{{execute}}
 
 ### If try in VM with public IP
-export MY_URI=$(curl ifconfig.me):1337
+export MY_URI=http://$(curl ifconfig.me):1337
 
-`export MY_URI=$(curl ifconfig.me):1337`{{copy}}
+`export MY_URI=http://$(curl ifconfig.me):1337`{{copy}}
 
 ### If try in localhost
-export MY_URI=localhost:1337
-
-`export MY_URI=localhost:1337`{{copy}}
+export MY_URI=http://kubernetes.docker.internal:1337
+`export MY_URI=http://kubernetes.docker.internal:1337`{{copy}}
 
 http post localhost:8001/services \
 name=strapi-jscp \
