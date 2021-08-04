@@ -43,12 +43,12 @@
     },
     "finish": {
       "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+          {"file": "strapi_sqlite/docker-compose.yaml", "target": "/root/strapi", "chmod": "+x"}
+      ]
     }
-  },
-  "assets": {
-    "host01": [
-        {"file": "strapi_sqlite/docker-compose.yaml", "target": "/root", "chmod": "+x"}
-    ]
   },
   "environment": {
     "uilayout": "editor-terminal"
