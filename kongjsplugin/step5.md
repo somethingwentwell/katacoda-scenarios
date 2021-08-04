@@ -16,21 +16,17 @@ cd /usr/local/kong/js-plugins
 
 `cd /usr/local/kong/js-plugins`{{execute}}
 
-npm install --unsafe -g text-censor
+npm install text-censor
 
-`npm install --unsafe -g text-censor`{{execute}}
+`npm install text-censor`{{execute}}
 
 exit
 
 `exit`{{execute}}
 
-docker cp plugindev/js-censor.js kong-ee:/usr/local/kong/js-plugins
+docker commit --change "ENV KONG_PLUGINS=bundled,js-hello,js-censor" kong-ee kong-ee-2
 
-`docker cp plugindev/js-censor.js kong-ee:/usr/local/kong/js-plugins`{{execute}}
-
-docker commit --change "ENV KONG_PLUGINS=bundled,js-censor" kong-ee kong-ee-2
-
-`docker commit --change "ENV KONG_PLUGINS=bundled,js-censor" kong-ee kong-ee-2`{{execute}}
+`docker commit --change "ENV KONG_PLUGINS=bundled,js-hello,js-censor" kong-ee kong-ee-2`{{execute}}
 
 docker stop kong-ee
 
@@ -57,3 +53,7 @@ http get https://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda
 
 Censor Keywords
 https://github.com/observerss/textfilter/blob/master/keywords
+
+docker commit --change "ENV KONG_PLUGINS=bundled,js-censor" kong-ee kong-ee-2
+
+/usr/lib/

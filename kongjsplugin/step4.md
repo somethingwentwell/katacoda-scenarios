@@ -2,6 +2,10 @@
 
 https://docs.konghq.com/gateway-oss/2.5.x/external-plugins/#developing-javascript-plugins
 
+cd
+
+`cd`{{execute}}
+
 git clone https://github.com/Kong/kong-js-pdk
 
 `git clone https://github.com/Kong/kong-js-pdk`{{execute}}
