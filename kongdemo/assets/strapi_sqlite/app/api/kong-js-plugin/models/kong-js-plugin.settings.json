@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kong_js_plugins",
+  "info": {
+    "name": "Kong JS Plugin"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

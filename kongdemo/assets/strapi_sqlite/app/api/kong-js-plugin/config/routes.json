@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/kong-js-plugins",
+      "handler": "kong-js-plugin.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/kong-js-plugins/count",
+      "handler": "kong-js-plugin.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/kong-js-plugins/:id",
+      "handler": "kong-js-plugin.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/kong-js-plugins",
+      "handler": "kong-js-plugin.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/kong-js-plugins/:id",
+      "handler": "kong-js-plugin.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/kong-js-plugins/:id",
+      "handler": "kong-js-plugin.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
