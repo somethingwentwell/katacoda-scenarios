@@ -5,7 +5,7 @@ https://github.com/observerss/textfilter/blob/master/keywords
 
 ##### 1) Review Censor Plugin and Test Code
 
-``cat plugindev/js-censor.test.js``
+``cat plugindev/js-censor.js``
 
 `plugindev/js-censor.js`{{open}}
 
@@ -68,6 +68,6 @@ name=js-censor``
 
 `http get localhost:8000/custom-plugin`{{execute}}
 
-``http get https://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com``
+``http get $MY_URI/kong-js-plugins``
 
 ###### Compare response body with Kong Gateway and direct call from Strapi. The result should be different like 1989 become **** with Kong Gateway.

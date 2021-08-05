@@ -77,9 +77,9 @@ Password: P@ssw0rd1
 `export MY_URI=http://kubernetes.docker.internal:1337`{{copy}}
 
 ###### (Optional) Ready to go Strapi
-``export MY_URI=http://20.188.99.103:1337/``
+``export MY_URI=http://20.188.99.103:1337``
 
-`export MY_URI=http://20.188.99.103:1337/`{{copy}}
+`export MY_URI=http://20.188.99.103:1337`{{copy}}
 
 ``sudo apt install httpie``
 
@@ -87,9 +87,9 @@ Password: P@ssw0rd1
 
 ###### Test if Strapi API is up
 
-``http MY_URI/kong-jsplugins``
+``http $MY_URI/kong-jsplugins``
 
-`http MY_URI/kong-jsplugins`{{execute}}
+`http $MY_URI/kong-jsplugins`{{execute}}
 
 ###### Add Kong Service and Route
 
