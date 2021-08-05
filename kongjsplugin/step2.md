@@ -35,6 +35,10 @@ unzip -o app.zip
 
 `unzip -o app.zip`{{execute}}
 
+docker start strapi_strapi_1
+
+`docker start strapi_strapi_1`{{execute}}
+
 https://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com
 
 Email: admin@demo.com   
@@ -56,6 +60,10 @@ export MY_URI=http://$(curl ifconfig.me):1337
 ### If try in localhost
 export MY_URI=http://kubernetes.docker.internal:1337
 `export MY_URI=http://kubernetes.docker.internal:1337`{{copy}}
+
+### Ready to go Strapi
+export MY_URI=http://20.188.99.103:1337/
+`export MY_URI=http://20.188.99.103:1337/`{{copy}}
 
 http post localhost:8001/services \
 name=strapi-jscp \
