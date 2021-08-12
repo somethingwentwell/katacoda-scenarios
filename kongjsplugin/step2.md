@@ -87,9 +87,9 @@ Password: P@ssw0rd1
 
 ###### Test if Strapi API is up
 
-``http $MY_URI/kong-jsplugins``
+``http $MY_URI/kong-js-plugins``
 
-`http $MY_URI/kong-jsplugins`{{execute}}
+`http $MY_URI/kong-js-plugins`{{execute}}
 
 ###### Add Kong Service and Route
 
