@@ -11,7 +11,7 @@ https://github.com/observerss/textfilter/blob/master/keywords
 
 ``cat plugindev/js-censor.test.js``
 
-`plugindev/js-censor.js`{{open}}
+`plugindev/js-censor.test.js`{{open}}
 
 ##### 2) Copy Censor Plugin Code to Kong Docker
 
