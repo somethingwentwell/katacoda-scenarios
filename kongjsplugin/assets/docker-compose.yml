@@ -3,4 +3,4 @@ services:
   strapi:
     image: strapi/strapi
     ports:
-      - '80:1337'
+      - '1337:1337'

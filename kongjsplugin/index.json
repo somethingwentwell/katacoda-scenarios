@@ -35,16 +35,16 @@
     "assets": {
       "host01": [
         {
-          "file": "docker-compose.yaml",
-          "target": "/root/strapi"
-        },
-        {
           "file": "js-censor.js",
           "target": "/root/plugindev"
         },
         {
           "file": "js-censor.test.js",
           "target": "/root/plugindev"
+        },
+        {
+          "file": "docker-compose.yml",
+          "target": "/root/strapi"
         }
       ]
     }
