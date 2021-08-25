@@ -8,18 +8,11 @@
       {
         "title": "Step 1",
         "text": "step1.md"
-      },
-      {
-        "title": "Step 2",
-        "text": "step2.md"
-      },
-      {
-        "title": "Step 3",
-        "text": "step3.md"
       }
     ],
     "intro": {
-      "text": "intro.md"
+      "text": "intro.md",
+      "code": "run.sh"
     },
     "finish": {
       "text": "finish.md"
@@ -28,7 +21,7 @@
       "host01": [
         {
           "file": "values.yaml",
-          "target": "assets"
+          "target": ""
         },
         {
           "file": "admin_gui_session_conf",
@@ -40,6 +33,10 @@
         },
         {
           "file": "license",
+          "target": ""
+        },
+        {
+          "file": "run.sh",
           "target": ""
         }
       ]

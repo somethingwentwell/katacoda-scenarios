@@ -29,12 +29,6 @@ env:
         secretKeyRef:
           name: kong-session-config # specify the portal session config secret
           key: portal_session_conf
-  
-  admin_api_uri: 2886795375-30001-frugo01.environments.katacoda.com
-  admin_gui_url: http://https://2886795375-30003-frugo01.environments.katacoda.com
-  portal_gui_host: 2886795375-30002-frugo01.environments.katacoda.com
-  portal_api_url: http://https://2886795375-30004-frugo01.environments.katacoda.com
-
 
 admin:
   enabled: true
@@ -54,7 +48,21 @@ admin:
     nodePort: 30444
 
 proxy:
-  enabled: false
+  enabled: true
+  type: NodePort
+
+  http:
+    enabled: true
+    servicePort: 8000
+    containerPort: 8000
+    nodePort: 30000
+
+  tls:
+    enabled: true
+    servicePort: 8443
+    containerPort: 8443
+    nodePort: 30443
+
 
 enterprise:
   enabled: true
@@ -63,10 +71,6 @@ enterprise:
     enabled: true
   portal:
     enabled: true
-  rbac:
-    enabled: true
-    admin_gui_auth: basic-auth
-    session_conf_secret: kong-session-config # Change to your session configuration secret
 
 manager:
   enabled: true
@@ -129,18 +133,6 @@ cluster:
     servicePort: 8005
     containerPort: 8005
     nodePort: 30005
-
-# Kong clustering options, for data plane telemetry
-clustertelemetry:
-  enabled: true
-  annotations: {}
-  type: NodePort
-
-  tls:
-    enabled: true
-    servicePort: 8006
-    containerPort: 8006
-    nodePort: 30006
 
 ingressController:
   enabled: false

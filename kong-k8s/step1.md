@@ -1,12 +1,4 @@
-`curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -`{{execute}}
-
-`sudo apt-get install apt-transport-https --yes`{{execute}}
-
-`echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list`{{execute}}
-
-`sudo apt-get update`{{execute}}
-
-`sudo apt-get install helm`{{execute}}
+Start Minikube
 
 `minikube start`{{execute}}
 
@@ -38,5 +30,32 @@ Deploy Kong Gateway on Kubernetes
 
 `helm install my-kong kong/kong -n kong --values ./values.yaml`{{execute}}
 
+Watch pod deployment
 
-https://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com
+`kubectl get po -n kong -w`{{execute}}
+
+Check minikube services
+
+`minikube service list -n kong`{{execute}}
+
+URLs:
+
+Kong Proxy:
+
+https://[[HOST_SUBDOMAIN]]-30000-[[KATACODA_HOST]].environments.katacoda.com
+
+Kong Admin:
+
+https://[[HOST_SUBDOMAIN]]-30001-[[KATACODA_HOST]].environments.katacoda.com
+
+Kong Manager:
+
+https://[[HOST_SUBDOMAIN]]-30002-[[KATACODA_HOST]].environments.katacoda.com
+
+Kong Portal:
+
+https://[[HOST_SUBDOMAIN]]-30003-[[KATACODA_HOST]].environments.katacoda.com
+
+Kong Portal API:
+
+https://[[HOST_SUBDOMAIN]]-30004-[[KATACODA_HOST]].environments.katacoda.com
