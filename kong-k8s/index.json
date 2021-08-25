@@ -37,7 +37,7 @@
         },
         {
           "file": "run.sh",
-          "target": ""
+          "chmod": "+x"
         }
       ]
     }
