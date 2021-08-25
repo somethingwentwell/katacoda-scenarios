@@ -23,6 +23,26 @@
     },
     "finish": {
       "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "values.yaml",
+          "target": "assets"
+        },
+        {
+          "file": "admin_gui_session_conf",
+          "target": ""
+        },
+        {
+          "file": "portal_session_conf",
+          "target": ""
+        },
+        {
+          "file": "license",
+          "target": ""
+        }
+      ]
     }
   },
   "environment": {
